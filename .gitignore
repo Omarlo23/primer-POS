@@ -1,4 +1,18 @@
-.venv
-database
+# Python
+__pycache__/
+*.pyc
 
+# Virtualenv
+.venv/
 
+# Bases de datos
+*.db
+
+# Variables de entorno
+.env
+
+# VS Code
+.vscode/
+
+# Linux
+.DS_Store

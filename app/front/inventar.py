@@ -1,57 +1,84 @@
 import flet as ft
 from functions.uniports import *
 
-
 def inventory_view(page: ft.Page):
-    page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
 
+    page.clean()
+
+    page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
+    page.scroll = ft.ScrollMode.AUTO
 
     page.add(
+
+        # Título
         ft.Text(
-        "Inventario",
-        size=30
-    ),
-
-    ft.Container(
-
-        margin=10,
-        alignment=ft.Alignment.CENTER,
-
-        width=1000,
-        height=150,
-
-        border_radius=10,
-
-        content=ft.Column(
-            controls=[
-                name_tf,
-                price_tf
-            ]
-        )
+            "Inventario",
+            size=30,
+            weight=ft.FontWeight.BOLD
         ),
-    ft.Container(
-        margin=10,
-        alignment=ft.Alignment.CENTER,
-        border_radius=10,
-        width=100,
-        height=100,
 
-        content=ft.Column(
+        # Contenido principal
+        ft.Row(
+            expand=True,
+            vertical_alignment=ft.CrossAxisAlignment.START,
 
             controls=[
 
-                ft.ElevatedButton(
-                content= ft.Text("  ver  "),
-                on_click= ver
+                # PANEL IZQUIERDO
+                ft.Container(
+                    width=300,
+                    padding=20,
+                    border_radius=10,
+
+                    content=ft.Column(
+                        controls=[
+
+                            ft.Text(
+                                "Agregar producto",
+                                size=20
+                            ),
+
+                            name_tf,
+
+                            price_tf,
+
+                            ft.ElevatedButton(
+                                content = ft.Text("Agregar"),
+                                on_click=agrega_pro,
+                                width=250
+                            ),
+
+                            ft.ElevatedButton(
+                                content =  ft.Text("Ver inventario"),
+                                on_click=ver,
+                                width=250
+                            ),
+                        ]
+                    )
                 ),
 
-                ft.ElevatedButton(
-                content= ft.Text("agregar"),
-                on_click= agrega_pro,
-                )                
+                # PANEL DERECHO
+                ft.Container(
+                    expand=True,
+                    padding=20,
+
+                    content=ft.Column(
+                        controls=[
+
+                            ft.Text(
+                                "Productos registrados",
+                                size=20
+                            ),
+
+                            ft.Container(
+                                content=tabla,
+                                expand=True
+                            )
+                        ]
+                    )
+                )
             ]
-        ), 
-    )   
-)      
+        )
+    )
 
     page.update()

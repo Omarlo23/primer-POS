@@ -7,15 +7,37 @@ name_tf = ft.TextField(label="Nombre")
 price_tf = ft.TextField(label="Precio")
 
 
-name_vent= ft.TextField(label="Nombre")
-cantidad_vent= ft.TextField(label="Nombre")
+name_vent= ft.TextField(label="id")
+cantidad_vent= ft.TextField(label="cantidad")
 
+tabla = ft.DataTable(
+    columns=[
+        ft.DataColumn(ft.Text("ID")),
+        ft.DataColumn(ft.Text("Producto")),
+        ft.DataColumn(ft.Text("Precio")),
+    ],
+    rows=[]
+)
 
 def ver(e):
         respuesta = requests.get(
             "http://127.0.0.1:8000/inventario/"
             )
-        print(respuesta.json())
+        productos = respuesta.json()
+        rows = []
+
+        for producto in productos:
+            rows.append(
+            ft.DataRow(
+                cells=[
+                    ft.DataCell(ft.Text(str(producto["id"]))),
+                    ft.DataCell(ft.Text(producto["name"])),                      
+                    ft.DataCell(ft.Text(str(producto["price"]))),
+                ]
+            )
+        )
+
+        tabla.rows = rows
 
 def agrega_pro(e):
     producto  = {
@@ -29,8 +51,6 @@ def agrega_pro(e):
         json=producto
     )
     
-    print("se agrego correctamente")
-
 def agrega_ventadb(e):
     venta = {
         "producto_id": name_vent.value,
@@ -42,11 +62,34 @@ def agrega_ventadb(e):
         json=venta
     )
 
-    print(respuesta.status_code)
-    print(respuesta.text)
+tablav = ft.DataTable(
+    columns=[
+        ft.DataColumn(ft.Text("ID")),
+        ft.DataColumn(ft.Text("Producto_id")),
+        ft.DataColumn(ft.Text("cantidad")),
+    ],
+    rows=[]
+)
+
 
 def ver_ventas(e):
-        respuesta = requests.get(
-            "http://127.0.0.1:8000/leer_ventas/"
+    respuesta = requests.get(
+        "http://127.0.0.1:8000/leer_ventas/"
+    )
+
+    ventas = respuesta.json()
+
+    rows = []
+
+    for venta in ventas:
+        rows.append(
+            ft.DataRow(
+                cells=[
+                    ft.DataCell(ft.Text(str(venta["id"]))),
+                    ft.DataCell(ft.Text(str(venta["producto_id"]))),
+                    ft.DataCell(ft.Text(str(venta["cantidad"]))),
+                ]
             )
-        print(respuesta.json())
+        )
+
+    tablav.rows = rows

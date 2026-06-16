@@ -3,7 +3,7 @@ import requests
 from functions.uniports import *
 
 def home_view(page: ft.Page):
-
+    page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
     page.clean()
 
     page.add(
@@ -11,7 +11,6 @@ def home_view(page: ft.Page):
         "HOME PAGE",size=30,
     ),
         ft.Container(
-
         margin=10,
         alignment=ft.Alignment.CENTER,
 
@@ -48,7 +47,18 @@ def home_view(page: ft.Page):
                 on_click= ver_ventas,
                 )                
             ]
-        ), 
-    )     
+        ) 
+    ),
+        ft.Container(
+        margin=10,
+        alignment=ft.Alignment.CENTER,
+        width=1000,
+        height=1000,
+        border_radius=10,
+
+        content=ft.Column(
+            tablav
+            )
+    ),     
 )
     page.update()
