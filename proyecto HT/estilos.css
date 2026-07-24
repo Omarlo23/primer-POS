@@ -1,0 +1,55 @@
+body {
+    background: #a7b0e7;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 10px;
+    align-items: center;
+    border-radius: 6px;
+    }
+
+.logo {
+    width: 50px;
+    display: block;
+    border-radius: 60%;
+}
+
+
+header {
+    margin: 20px auto;
+    background: rgb(253, 253, 253);
+    padding: 10px 10px;
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+    border-radius: 6px;
+    }
+
+.menu {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    font-size: 18px;
+    }
+
+.userlogo {
+    width: 50px;
+    display: block;
+    border-radius: 60%;
+}
+
+.conntent {
+    background-color: #179af1;
+    padding: 20px;
+    border-radius: 6px;
+    font-size: 18px;
+    text-align: center;
+    margin-top: 20px;
+    color: #000000;
+}
+
+.homelogo{
+    width: 50px;
+    display: block;
+    border-radius: 60%;
+    margin-top: 20px;
+}
